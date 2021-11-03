@@ -1,0 +1,48 @@
+<h2 align="center">Profiles List</h2>
+<table border="1" class="table table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Phone Number</th>
+            <th>Address</th>
+            <th>SBWS compliant</th>
+            <th>Mandatory courses done</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let profile of profiles">
+            <td>
+                {{profile.firstName}}
+            </td>
+            <td>
+                {{profile.lastName}}
+            </td>
+            <td>
+                {{profile.phoneNumber}}
+            </td>
+            <td>
+                {{ profile.address.addLine1 }} <br>
+                {{ profile.address.addLine2 }} <br>
+                {{ profile.address.city }} <span>,</span>
+                {{ profile.address.country }} <br>
+                <span> <strong>Pincode : </strong></span>
+                {{ profile.address.pincode }}
+            </td>
+            <td>
+                <div *ngIf="profile.isSBWSCompliant; else elseBlock">Yes</div>
+                <ng-template #elseBlock>No</ng-template>
+            </td>
+            <td>
+                <div *ngIf="profile.areMandatoryCoursesDone; else elseBlock">Yes</div>
+                <ng-template #elseBlock>No</ng-template>
+            </td>
+            <td>
+                <a style = "color: white;" (click)="goToUpdatePage(profile.id)" class="btn btn-primary btn-sm mb-3">Edit</a>
+                <br>
+                <a onclick="return confirm('Are you sure?')" (click)="deleteProfile(profile.id)" class="btn btn-danger btn-sm mb-3">Delete</a>
+            </td>
+        </tr>
+    </tbody>
+</table>

@@ -1,0 +1,15 @@
+<h2>Update Profile</h2>
+
+<form ngNativeValidate (ngSubmit) = "onSubmit()">
+    <h5 style="margin-top: 15px;">Contact Details</h5>
+    <input required="true" [(ngModel)]="profile.firstName" name = "firstName" type="text" placeholder="First Name" class="form-control mb-4 col-4">
+    <input type="text" [(ngModel)]="profile.lastName" name = "lastName" placeholder="Last Name" class="form-control mb-4 col-4">
+    <input required="true" type="text" [(ngModel)]="profile.phoneNumber" name = "phoneNumber" placeholder="Phone Number" class="form-control mb-4 col-4">
+    <h5>Address</h5>
+    <input required="true" type="text" [(ngModel)]="address.addLine1" name = "address.addLine1" placeholder="Address Line 1" class="form-control mb-2 col-4">
+    <input type="text" [(ngModel)]="address.addLine2" name = "address.addLine2" placeholder="Address Line 2" class="form-control mb-2 col-4">
+    <input required="true" type="text" [(ngModel)]="address.city" name = "address.city" placeholder="City" class="form-control mb-2 col-4">
+    <input required="true" type="text" [(ngModel)]="address.country" name = "address.country" placeholder="Country" class="form-control mb-2 col-4">
+    <input required="true" type="text" [(ngModel)]="address.pincode" name = "address.pincode" placeholder="PinCode" class="form-control mb-4 col-4">
+    <button type="submit" style="margin-bottom: 3px;" class="btn btn-info col-2"> Save Profile</button>
+</form>
