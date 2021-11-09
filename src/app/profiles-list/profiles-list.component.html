@@ -1,18 +1,32 @@
 <h2 align="center">Profiles List</h2>
-<table border="1" class="table table-striped">
-    <thead class="table-dark">
+
+<div class="row">
+    <div class="col">
+        <div class="search">
+            <input type="text" class="form-control" placeholder="Search..." [(ngModel)]="filterTerm">
+        </div>
+    </div>
+    <div class="col">
+        <div class="paginator">
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        </div>
+    </div>
+</div>
+    
+<table border="1" class="table table-hover">
+    <thead class="thead-dark">
         <tr>
             <th>First Name</th>
             <th>Last Name</th>
             <th>Phone Number</th>
-            <th>Address</th>
+            <th>Address&nbsp; </th>
             <th>SBWS compliant</th>
             <th>Mandatory courses done</th>
             <th>Actions</th>
         </tr>
     </thead>
-    <tbody>
-        <tr *ngFor="let profile of profiles">
+    <tbody class="tbody-hover">
+        <tr *ngFor="let profile of profiles | filter:filterTerm | paginate : {itemsPerPage:5,currentPage:p};">
             <td>
                 {{profile.firstName}}
             </td>
@@ -25,9 +39,9 @@
             <td>
                 {{ profile.address.addLine1 }} <br>
                 {{ profile.address.addLine2 }} <br>
-                {{ profile.address.city }} <span>,</span>
+                {{ profile.address.city }} ,
                 {{ profile.address.country }} <br>
-                <span> <strong>Pincode : </strong></span>
+                <strong>Pincode : </strong>
                 {{ profile.address.pincode }}
             </td>
             <td>
@@ -39,10 +53,14 @@
                 <ng-template #elseBlock>No</ng-template>
             </td>
             <td>
-                <a style = "color: white;" (click)="goToUpdatePage(profile.id)" class="btn btn-primary btn-sm mb-3">Edit</a>
+                <a  (click)="goToUpdatePage(profile.id)" class="btn btn-primary btn-sm mb-3">Edit</a>
                 <br>
-                <a onclick="return confirm('Are you sure?')" (click)="deleteProfile(profile.id)" class="btn btn-danger btn-sm mb-3">Delete</a>
+                <a  (click)="deleteProfile(profile.id)" class="btn btn-danger btn-sm mb-3">Delete</a>
             </td>
         </tr>
     </tbody>
 </table>
+<div *ngIf="(profiles | filter: filterTerm).length==0" class="alert alert-danger" role="alert">
+    <p>No Profile Found</p>
+</div>
+<br>

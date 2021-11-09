@@ -34,8 +34,8 @@ export class UpdateProfileComponent implements OnInit {
   updateProfile(){
     this.profileService.updateProfile(this.id,this.profile).subscribe(data => {
       console.log(data);
-    }, error => console.log(error)
-    );
+    }, error => console.log(error));
+  
   }
 
   onSubmit() {

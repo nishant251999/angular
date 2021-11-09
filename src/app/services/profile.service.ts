@@ -1,4 +1,4 @@
-import { Profile } from './../entity/profile';
+import { Profile } from '../entity/profile';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';

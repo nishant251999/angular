@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Address } from '../entity/address';
-import { Profile } from './../entity/profile';
+import { Profile } from '../entity/profile';
 import { ProfileService } from './../services/profile.service';
 
 @Component({

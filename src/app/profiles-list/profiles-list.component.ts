@@ -1,7 +1,9 @@
-import { Router } from '@angular/router';
-import { Profile } from './../entity/profile';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Profile } from '../entity/profile';
 import { ProfileService } from './../services/profile.service';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+
 
 @Component({
   selector: 'app-profiles-list',
@@ -11,6 +13,9 @@ import { ProfileService } from './../services/profile.service';
 export class ProfilesListComponent implements OnInit {
 
   profiles: Profile[] = [];
+  filteredProfiles : Profile[] = [];
+  p:number = 1;
+  filterTerm!:string;
 
   constructor(
     private profileService:ProfileService,
@@ -18,17 +23,33 @@ export class ProfilesListComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+    this.fetchProfiles();
+  }
+
+  fetchProfiles() {
     this.profileService.getAllProfiles().subscribe( data => {
-      this.profiles = data
+      this.profiles = data;
     });
   }
+
+  // filterProfiles() {
+  //   this.filteredProfiles = this.profiles.filter( res => {
+  //     for (let index = 0; index < this.profiles.length; index++) {
+  //       const element =[index];
+        
+  //     }
+  //   })
+  // }
   goToUpdatePage(id: number) {
     this.router.navigate(["/updateProfile",id]);
   }
 
   deleteProfile(id: number) {
-    this.profileService.deleteProfile(id).subscribe(data=> {
-      console.log(data);
-    });
+    if(confirm('Are you sure?')) {
+      this.profileService.deleteProfile(id).subscribe(response=> {
+      console.log(response);
+      this.fetchProfiles();
+      });
+    }
   }
 }

@@ -1,0 +1,17 @@
+:host a {
+    color:white;
+}
+
+h2 {
+    margin: 90px 0 10px 0;
+}
+
+.search {
+    float: left;
+    margin-bottom: 15px;
+    width: 150%;
+}
+.paginator {
+    align-items: center;
+    float:right;
+} 
