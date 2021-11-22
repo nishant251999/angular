@@ -1,19 +1,16 @@
 <h2 align="center">Profiles List</h2>
 
-<div class="row">
-    <div class="col">
-        <div class="search">
-            <input type="text" class="form-control" placeholder="Search..." [(ngModel)]="filterTerm">
-        </div>
+<div class="controls">
+    <div class="search">
+        <input type="text" class="form-control" placeholder="Search..." [(ngModel)]="filterTerm">
     </div>
-    <div class="col">
-        <div class="paginator">
-            <pagination-controls (pageChange)="p = $event"></pagination-controls>
-        </div>
+    <div class="paginator">
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
     </div>
+    <app-pagination [page]="p"></app-pagination>
 </div>
     
-<table border="1" class="table table-hover">
+<table class="table table-hover">
     <thead class="thead-dark">
         <tr>
             <th>First Name</th>
@@ -26,7 +23,7 @@
         </tr>
     </thead>
     <tbody class="tbody-hover">
-        <tr *ngFor="let profile of profiles | filter:filterTerm | paginate : {itemsPerPage:5,currentPage:p};">
+        <tr *ngFor="let profile of profiles | filter:filterTerm | paginate : {itemsPerPage:5,currentPage:p};" >
             <td>
                 {{profile.firstName}}
             </td>
@@ -53,9 +50,9 @@
                 <ng-template #elseBlock>No</ng-template>
             </td>
             <td>
-                <a  (click)="goToUpdatePage(profile.id)" class="btn btn-primary btn-sm mb-3">Edit</a>
+                <button  (click)="goToUpdatePage(profile.id)" class="btn btn-outline-primary btn-sm mb-3">Edit</button>
                 <br>
-                <a  (click)="deleteProfile(profile.id)" class="btn btn-danger btn-sm mb-3">Delete</a>
+                <button  (click)="deleteProfile(profile.id)" class="btn btn-outline-danger btn-sm mb-3">Delete</button>
             </td>
         </tr>
     </tbody>

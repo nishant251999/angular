@@ -1,19 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, OnChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { Profile } from '../entity/profile';
 import { ProfileService } from './../services/profile.service';
-import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 
 @Component({
   selector: 'app-profiles-list',
   templateUrl: './profiles-list.component.html',
-  styleUrls: ['./profiles-list.component.css']
+  styleUrls: ['./profiles-list.component.css'],
+  encapsulation: ViewEncapsulation.None 
 })
 export class ProfilesListComponent implements OnInit {
 
   profiles: Profile[] = [];
-  filteredProfiles : Profile[] = [];
   p:number = 1;
   filterTerm!:string;
 
@@ -32,14 +31,6 @@ export class ProfilesListComponent implements OnInit {
     });
   }
 
-  // filterProfiles() {
-  //   this.filteredProfiles = this.profiles.filter( res => {
-  //     for (let index = 0; index < this.profiles.length; index++) {
-  //       const element =[index];
-        
-  //     }
-  //   })
-  // }
   goToUpdatePage(id: number) {
     this.router.navigate(["/updateProfile",id]);
   }
@@ -48,7 +39,7 @@ export class ProfilesListComponent implements OnInit {
     if(confirm('Are you sure?')) {
       this.profileService.deleteProfile(id).subscribe(response=> {
       console.log(response);
-      this.fetchProfiles();
+      // this.fetchProfiles();
       });
     }
   }

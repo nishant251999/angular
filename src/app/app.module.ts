@@ -12,6 +12,7 @@ import { ProfilesListComponent } from './profiles-list/profiles-list.component';
 import { UpdateProfileComponent } from './update-profile/update-profile.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { PaginationComponent } from './pagination/pagination.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     ProfilesListComponent,
     AddProfileComponent,
     UpdateProfileComponent,
-    NavBarComponent
+    NavBarComponent,
+    PaginationComponent
   ],
   imports: [
     BrowserModule,
