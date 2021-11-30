@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
@@ -12,7 +12,13 @@ import { ProfilesListComponent } from './profiles-list/profiles-list.component';
 import { UpdateProfileComponent } from './update-profile/update-profile.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
-import { PaginationComponent } from './pagination/pagination.component';
+import { LoginComponent } from './login/login.component';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import {MatCardModule} from '@angular/material/card';
+import { RegisterComponent } from './register/register.component';
+import { ConfigInterceptor } from './interceptor/config.interceptor';
+
 
 @NgModule({
   declarations: [
@@ -21,7 +27,8 @@ import { PaginationComponent } from './pagination/pagination.component';
     AddProfileComponent,
     UpdateProfileComponent,
     NavBarComponent,
-    PaginationComponent
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -29,11 +36,13 @@ import { PaginationComponent } from './pagination/pagination.component';
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
-    MatTableModule,
     NgxPaginationModule,
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule,
+    MatToolbarModule,
+    MatFormFieldModule,
+    MatCardModule
   ],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: ConfigInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

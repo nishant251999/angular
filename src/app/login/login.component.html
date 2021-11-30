@@ -1,0 +1,26 @@
+<div class="container" align = "center">
+    <h2 align = "center" style="margin-top: 100px;" >Login Here</h2>
+    <hr>
+
+    <div *ngIf="invalidCred" style = "margin-top:15px"  class = "alert alert-danger">
+        Invalid Credentials
+    </div>
+    <!-- 
+    <div style = "margin-top:15px"  class = "alert alert-success">
+        You have been logged out
+    </div> -->
+    <div *ngIf="formEmpty" style = "margin-top:15px"  class = "alert alert-danger">
+        Enter All Mandatory Fields
+    </div>
+    <form (ngSubmit)="onSubmit()" style="margin-top:100px">
+        <!-- <label>Username</label> -->
+        <input required="true" [(ngModel)]="credentials.username" type="text" name="username" placeholder="Username" class="form-control mb-4 col-4">
+        <!-- <label>Password</label> -->
+        <input required="true" [(ngModel)]="credentials.password" type="password" name="password" placeholder="Password" class="form-control mb-4 col-4">
+        <button  type="submit" class="btn btn-info col-2"> Sign in</button>
+        <br><br>
+        <span>Not registered? <a [routerLink]="['/register']" routerLinkActive="router-link-active" >Register here</a>
+        </span>
+    </form>
+    
+</div>

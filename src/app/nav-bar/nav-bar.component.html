@@ -1,13 +1,20 @@
 <nav class="navbar navbar-expand-sm bg-primary navbar-dark navbar fixed-top">
-    <div class="container-fluid">
-      <a class="navbar-brand" routerLink="/">{{title}}</a>
-    </div>
-    <ul class = "navbar-nav">
-      <li class = "nav-item">
-        <a routerLink="/home" routerLinkActive="active" class="nav-link" >Profiles List</a>
-      </li>
-      <li class = "nav-item">
-          <a routerLink="/addProfile" routerLinkActive="active" class="nav-link" >Add Profile</a>
-      </li>
-    </ul>
-  </nav>
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="/home">{{title}}</a>
+  </div>
+
+  <ul class = "navbar-nav">
+    <li class = "nav-item">
+      <a *ngIf="isLoggedIn" routerLink="/addProfile" routerLinkActive="active" class="nav-link" >Add Profile</a>
+    </li>
+    <li class = "nav-item">
+      <a *ngIf="!isLoggedIn" routerLink="/login" routerLinkActive="active" class="nav-link" >Login</a>
+    </li>
+    <li class = "nav-item logout">
+      <a *ngIf="isLoggedIn" (click)="logout()">Logout</a>
+    </li>
+    <li class = "nav-item">
+      <a *ngIf="!isLoggedIn" routerLink="/register"  class="nav-link" >Register</a>
+    </li>
+  </ul>
+</nav>

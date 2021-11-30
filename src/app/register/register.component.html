@@ -1,0 +1,22 @@
+<h2 align = "center" style="margin-top: 100px;" >Register Here</h2>
+    <hr>
+    <div class="container" align = "center">
+        <!-- success message -->
+        <!-- <div style = "margin-top:15px" th:if="${param.success}">
+            <div class="alert alert-info">You've successfully registered!</div>
+        </div>
+        <div style = "margin-top:15px" th:if="${param.alreadyexists}">
+            <div class="alert alert-danger">Oops! Username already exists</div>
+        </div> -->
+        <form th:action = "@{/registerUser}" th:object="${user}" method="POST" style="margin-top:100px">
+            <!-- <label>Username</label> -->
+            <input required="true" type="text" th:field="*{username}" placeholder="Username" class="form-control mb-4 col-4">
+            <!-- <label>Password</label> -->
+            <input required="true" type="password" th:field="*{password}" placeholder="Password" class="form-control mb-4 col-4">
+            <button type="submit" class="btn btn-info col-2"> Register</button>
+            <br><br>
+            <span>Already registered? <a href="/" th:href="@{/signin}">Login here</a>
+            </span>
+        </form>
+        
+    </div>

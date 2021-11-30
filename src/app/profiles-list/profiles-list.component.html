@@ -7,7 +7,6 @@
     <div class="paginator">
         <pagination-controls (pageChange)="p = $event"></pagination-controls>
     </div>
-    <app-pagination [page]="p"></app-pagination>
 </div>
     
 <table class="table table-hover">
@@ -23,7 +22,7 @@
         </tr>
     </thead>
     <tbody class="tbody-hover">
-        <tr *ngFor="let profile of profiles | filter:filterTerm | paginate : {itemsPerPage:5,currentPage:p};" >
+        <tr *ngFor="let profile of profiles | filter:filterTerm | paginate : {itemsPerPage:3,currentPage:p};" >
             <td>
                 {{profile.firstName}}
             </td>
@@ -50,9 +49,9 @@
                 <ng-template #elseBlock>No</ng-template>
             </td>
             <td>
-                <button  (click)="goToUpdatePage(profile.id)" class="btn btn-outline-primary btn-sm mb-3">Edit</button>
+                <button  (click)="goToUpdatePage(profile.id)" class="btn btn-primary btn-sm mb-3">Edit</button>
                 <br>
-                <button  (click)="deleteProfile(profile.id)" class="btn btn-outline-danger btn-sm mb-3">Delete</button>
+                <button  (click)="deleteProfile(profile.id)" class="btn btn-danger btn-sm mb-3">Delete</button>
             </td>
         </tr>
     </tbody>

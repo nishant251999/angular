@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, OnChanges } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, OnChanges, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { Profile } from '../entity/profile';
 import { ProfileService } from './../services/profile.service';
@@ -22,11 +22,12 @@ export class ProfilesListComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+    this.profileService.generateToken();
     this.fetchProfiles();
   }
 
   fetchProfiles() {
-    this.profileService.getAllProfiles().subscribe( data => {
+    this.profileService.getAllProfilesWithJwt().subscribe( data => {
       this.profiles = data;
     });
   }
@@ -39,7 +40,7 @@ export class ProfilesListComponent implements OnInit {
     if(confirm('Are you sure?')) {
       this.profileService.deleteProfile(id).subscribe(response=> {
       console.log(response);
-      // this.fetchProfiles();
+      this.fetchProfiles();
       });
     }
   }

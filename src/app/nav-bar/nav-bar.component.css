@@ -1,0 +1,20 @@
+.example {
+    flex: 1 1 auto;
+}
+
+.logout {
+    cursor: pointer;
+}
+
+.nav-item {
+    font-weight: bold;
+}
+
+.logout {
+    padding: 1em;
+    color: white;
+}
+
+a {
+    color: white;
+}

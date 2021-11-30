@@ -27,7 +27,7 @@ export class AddProfileComponent implements OnInit {
       console.log(data);
     },
     error=> console.log(error));
-    this.router.navigate(["/home"]);
+    window.location.href = "/home";
   }
 
   onSubmit(){

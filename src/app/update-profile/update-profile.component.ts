@@ -40,6 +40,6 @@ export class UpdateProfileComponent implements OnInit {
 
   onSubmit() {
     this.updateProfile();
-    this.router.navigate(["/home"]);
+    window.location.href = "/home";
   }
 }
