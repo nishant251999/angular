@@ -13,6 +13,7 @@ export class AddProfileComponent implements OnInit {
 
   profile:Profile = new Profile();
   address:Address = new Address();
+  notAuth = false;
 
   constructor(
     private profileService: ProfileService,
@@ -25,9 +26,14 @@ export class AddProfileComponent implements OnInit {
   saveProfile(){
     this.profileService.addProfile(this.profile).subscribe(data => {
       console.log(data);
+      window.location.href = "/home";
     },
-    error=> console.log(error));
-    window.location.href = "/home";
+    (error:any) => {
+      console.log(error);
+      if(error.status == 403) {
+        this.notAuth = true;
+      }
+    });
   }
 
   onSubmit(){

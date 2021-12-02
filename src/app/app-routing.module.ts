@@ -9,7 +9,7 @@ import { ProfilesListComponent } from './profiles-list/profiles-list.component';
 
 const routes: Routes = [
   {path : "home", component : ProfilesListComponent, canActivate:[AuthGuard]},
-  {path : "#", redirectTo : "home", pathMatch : "full"},
+  {path : "", redirectTo : "home", pathMatch : "full"},
   {path : "addProfile", component : AddProfileComponent, canActivate:[AuthGuard]},
   {path : "updateProfile/:id", component : UpdateProfileComponent, canActivate:[AuthGuard]},
   {path : "login", component: LoginComponent},

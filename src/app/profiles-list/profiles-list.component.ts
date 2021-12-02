@@ -15,6 +15,7 @@ export class ProfilesListComponent implements OnInit {
   profiles: Profile[] = [];
   p:number = 1;
   filterTerm!:string;
+  notAuth = false;
 
   constructor(
     private profileService:ProfileService,
@@ -37,11 +38,15 @@ export class ProfilesListComponent implements OnInit {
   }
 
   deleteProfile(id: number) {
-    if(confirm('Are you sure?')) {
-      this.profileService.deleteProfile(id).subscribe(response=> {
-      console.log(response);
-      this.fetchProfiles();
-      });
-    }
+    this.profileService.deleteProfile(id).subscribe(response=> {
+    console.log(response);
+    this.fetchProfiles();
+    },
+    (error:any) => {
+      console.log(error);
+      if(error.status == 403) {
+        this.notAuth = true;
+      }
+    });
   }
 }

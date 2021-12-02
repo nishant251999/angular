@@ -1,4 +1,7 @@
 <h2>Update Profile</h2>
+<div style="margin-top:15px" *ngIf="notAuth">
+    <div class="alert alert-danger">You are not Authorized to perform this action</div>
+</div>
 
 <form ngNativeValidate (ngSubmit) = "onSubmit()">
     <h5 style="margin-top: 15px;">Contact Details</h5>

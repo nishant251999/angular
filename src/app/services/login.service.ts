@@ -20,7 +20,7 @@ export class LoginService {
   }
 
   registerUser(credentials:Credentials) {
-    return this.httpClient.post(`${this.baseURL}/register`,credentials);
+    return this.httpClient.post(`${this.baseURL}/create-user`,credentials);
   }
 
   loginUser(token:string) : Boolean{

@@ -14,6 +14,7 @@ export class UpdateProfileComponent implements OnInit {
   id!:number;
   profile:Profile = new Profile();
   address:Address = new Address();
+  notAuth = false;
 
   constructor(
     private profileService: ProfileService,
@@ -34,12 +35,17 @@ export class UpdateProfileComponent implements OnInit {
   updateProfile(){
     this.profileService.updateProfile(this.id,this.profile).subscribe(data => {
       console.log(data);
-    }, error => console.log(error));
-  
+      window.location.href = "/home";
+    }, 
+    (error:any) => {
+      console.log(error);
+        if(error.status == 403) {
+          this.notAuth = true;
+        }
+    });
   }
 
   onSubmit() {
     this.updateProfile();
-    window.location.href = "/home";
   }
 }
